@@ -9,27 +9,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
-    <link href="" rel="stylesheet">
     <link rel="icon" href="/img/favicon.png">
     <link rel="stylesheet" type="text/css" href="/css/normalize.css">
     <script src="/js/live.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
     <style>
-        @media only screen and (min-width: 450px) {}
 
-        @media only screen and (min-width: 700px) {}
-
-        @media only screen and (min-width: 1000px) {}
-
-        @media only screen and (min-width: 1200px) {}
-
-        @media only screen and (min-width: 1500px) {}
     </style>
 </head>
 
 <body>
-    hello world!
+    <header id="header">
+        <a href="/" id="logo">
+            <h1 class="en">LOVE<br>WITHOUT<br>LINES</h1>
+            <div class="heart-wrapper">
+                <div class="heart"></div>
+            </div>
+            <h1 class="es">AMOR<br>SIN<br>LINEAS</h1>
+        </a>
+        <a href="#">
+            <div id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </a>
+    </header>
+    <section id="mision-statement">
+        <section>
+            <h2>Mission statement</h2>
+            <div class="header-accent"></div>
+            <p>Our goal is to provide immediate relief to migrants waiting to seek asylum
+                along the Texas-Mexico border.
+            </p>
+            <p>We will be providing meals, hygiene items and material goods along with medical
+                care.
+            </p>
+            <p>Many of us make calls every day to our Senators and Representatives about
+                the migrant crisis and family separation. Unfortunately, nothing is changing.
+                Migrants are waiting for months on the streets of Mexico for their turn to
+                file for asylum, oftentimes in brutal heat and dangerous conditions. These migrants
+                cannot wait for policy change. They need relief now.
+            </p>
+            <a class="continue" href="#">continue reading</a>
+        </section>
+        <section>
+            <h2>Estado de la misión</h2>
+            <div class="header-accent"></div>
+            <p>Nuestro objetivo es brindar ayuda inmediata a los migrantes que esperan buscar
+                asilo en la frontera de Texas-México.
+            </p>
+            <p>Proporcionaremos comidas, articulos de higiene y bienes materiales junto con
+                atención médica.
+            </p>
+            <p>Muchos de nosotros hacemos llamadas todos los días a nuestros senadores y
+                representantes sobre la crisis de los migrantes y la separación familiar.
+                Lamentablemente, nada está cambiando. Los migrantes están esperando durante
+                meses en las calles de México su turno para solicitar asilo, en condiciones
+                de calor brutal y condiciones peligrosas. Estos migrantes no pueden esperar
+                el cambio de politica. Necesitan alivio ahora.
+            </p>
+            <a class="continue" href="#">sigue leyendo</a>
+        </section>
+    </section>
+    <button id="donate-btn">
+        <div class="donate-txt">DONATE</div>
+        <div id="button-divider"></div>
+        <div class="donate-txt">DONAR</div>
+    </button>
+    <section id="shirts">
+        <div class="shirt-box">
+            <a href="https://www.bonfire.com/love-without-lines/">
+                <img id="mi-casa-shirt" src="img/love-wo-lines-shirt.png" alt="A black shirt reads 
+            'My Land is Your Land' 'Mi Casa es Su Casa' and has a drawing of the sun rising 
+            over mountains, trees, and a river.">
+            </a>
+        </div>
+        <div class="shirt-box">
+            <a href="#">
+                <img id="mi-casa-shirt" src="img/love-wo-lines-shirt.png" alt="A black shirt reads 
+                'My Land is Your Land' 'Mi Casa es Su Casa' and has a drawing of the sun rising 
+                over mountains, trees, and a river.">
+            </a>
+        </div>
 
-    does it work?
+        </div>
+    </section>
+    <footer>
+        <a href="https://www.facebook.com/Love-Without-Lines-Amor-Sin-Lineas-666841600450945">
+            <i id="fb">FB</i>
+        </a>
+        <a href="https://twitter.com/LinesWithout/">
+            <i id="twitter">Twitter</i>
+        </a>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const header = document.getElementById('header');
+        const old_bg_color = getComputedStyle(header, null)
+            .getPropertyValue("background-color");
+        hamburger.addEventListener('click', () => {
+            header.style.backgroundColor = "#ee140c";
+            setTimeout(() => {
+                header.style.backgroundColor = old_bg_color;
+            }, 100);
+        });
+    </script>
+
 </body>
 
 </html>

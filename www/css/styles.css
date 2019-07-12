@@ -1,0 +1,123 @@
+html {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+header{
+    background-color: #92140C;
+    padding-left: 60px;
+    padding-right: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    height: 8rem;
+}
+
+#logo {
+    display: flex;
+    flex-direction: row;
+}
+
+header > .container {
+    display: flex;
+    align-items: space-around;
+    justify-content: space-around;
+    font-size: 1rem;
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+h1, h2, h3, h4, h5, p, a{
+    font-size: 1rem;
+}
+
+h1{
+    color:#111D4A; 
+}
+h1.en {
+    text-align: right;
+}
+#hamburger {
+    position: fixed;
+    right: 20px;
+    top: 30px;
+}
+#hamburger > div {
+    width: 25px;
+    height: 2px;
+    background-color: #111d4a;
+    margin-top: 4px;
+    margin-bottom: 6px;
+}
+
+p {
+    font-size: 1rem;
+}
+
+#shirts {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-flow: row wrap;
+    background-color:#fff;
+    padding-bottom: 1rem;
+}
+
+.shirt-box {
+    margin: 1rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+.heart-wrapper {
+    width: 80px;
+}
+.heart {
+    background-color: #111D4A;
+    display: block;
+    height: 10px;
+    margin: 0 2px;
+    position: relative;
+    top: 0;
+    transform: rotate(-45deg);
+    left: 45%; top: 45%;
+    width: 10px;
+  }
+  
+  .heart:before,
+  .heart:after {
+    content: "";
+    background-color: #111D4A;
+    border-radius: 50%;
+    height: 10px;
+    position: absolute;
+    width: 10px;
+  }
+  
+  .heart:before {
+    top: -5px;
+    left: 0;
+  }
+  
+  .heart:after {
+    left: 5px;
+    top: 0;
+  }
+
+@media only screen and (min-width: 450px) {}
+
+@media only screen and (min-width: 700px) {}
+
+@media only screen and (min-width: 1000px) {}
+
+@media only screen and (min-width: 1200px) {}
+
+@media only screen and (min-width: 1500px) {}
