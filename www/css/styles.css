@@ -2,62 +2,226 @@ html {
     font-family: Helvetica, Arial, sans-serif;
 }
 
+h1, h2, h3, h4, h5, p, a{
+    font-size: 1rem;
+    color: #111D4A;
+}
 a {
     text-decoration: none;
 }
 
+p {
+    font-size: 1rem;
+}
+
 header{
-    background-color: #92140C;
+    background: 
+        radial-gradient(
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, .1),
+            rgba(255, 255, 255, .6),
+            rgba(255, 255, 255, .8),
+            rgba(255, 255, 255, .9),
+            rgba(255, 255, 255, 1)
+        ),
+        url('/img/mom.jpg');
+    background-position: center center;
+    background-size: cover;
     padding-left: 60px;
     padding-right: 60px;
-    width: 100%;
+    margin-left: -10%;
+    width: 120%; /* oversized to allow scrollbar removal in the modal */
     display: flex;
     align-items: center;
     justify-content: center;
     top: 0px;
     left: 0px;
-    height: 8rem;
+    height: 50vw;
+    font-size: 1rem;
 }
 
 #logo {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    min-width: 200px;
+    width: 90%
 }
 
-header > .container {
+
+/* 
+#hamburger {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+}
+#hamburger > div {
+    width: 1rem;
+    height: 2px;
+    background-color: #111d4a;
+    margin-top: 2px;
+    margin-bottom: 3px;
+} */
+
+
+#mission-statement {
+    position: relative;
     display: flex;
-    align-items: space-around;
-    justify-content: space-around;
-    font-size: 1rem;
-    flex-grow: 1;
-    max-width: 200px;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
-h1, h2, h3, h4, h5, p, a{
-    font-size: 1rem;
+#mission-statement > section {
+    width: 140px;
+    border: solid 1px #BEC1CD;
+    margin: .5rem;
+    padding: .5rem;
+}
+#es-mission-statement.opened,
+#en-mission-statement.opened {
+    position: fixed;
+    top: 0rem;
+    bottom: 0rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    width: 80%;
+    max-width: 25rem;
+    background-color: #fff;
+    z-index: 20;
+    animation-duration: .15s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    overflow: auto;
+}
+#es-mission-statement.opened{
+    animation-name: open-statement-rtl;
+}
+#en-mission-statement.opened {
+    animation-name: open-statement-ltr;
 }
 
+@keyframes open-statement-ltr{
+    0% {
+        margin-top: 5rem;
+        margin-left: -1rem;
+    }
+    100% {
+        margin-top: 4rem;
+        margin-left: 1rem;
+    }
+}
+@keyframes open-statement-rtl{
+    0% {
+        margin-top: 5rem;
+        margin-left: 3rem;
+    }
+    100% {
+        margin-top: 4rem;
+        margin-left: 1rem;
+    }
+}
+.continue {
+    /* text-decoration: underline; */
+    font-size: .8rem;
+    color: #676F8B;
+}
+.close-btn{
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+}
+.close-btn > *{
+    position: absolute;
+    top: 1rem;
+    right: .5rem;
+    width: 1rem;
+    height: 2px;
+    background-color: #111D4A;
+}
+
+.close-btn-a {
+    transform: rotate(45deg);
+}
+
+.close-btn-b {
+    transform: rotate(-45deg);
+}
+#modal-bg.opened {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #ebd4d2;
+    z-index: 10;
+    animation-name: open-modal-bg;
+    animation-duration: .3s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+@keyframes open-modal-bg {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.9;
+    }
+}
 h1{
     color:#111D4A; 
 }
 h1.en {
     text-align: right;
 }
-#hamburger {
-    position: fixed;
-    right: 20px;
-    top: 30px;
+h2 {
+    margin-bottom: -.3rem;
 }
-#hamburger > div {
-    width: 25px;
-    height: 2px;
-    background-color: #111d4a;
-    margin-top: 4px;
-    margin-bottom: 6px;
+h2::after{
+    background-color: #92140C;
+    width: 1.3rem;
+    height: 5px;
+    margin-top: .2rem;
+    display: block;
+    content: '';
+}
+.btn-divider{
+    height: 1.2rem;
+    width: 1px;
+    background-color: #92140C;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.big-btn {
+    width: 90%;
+    max-width: 30rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #D3D5DE;
+    border: 1px solid #111D4A;
+    color: #92140C;
+    font-weight: bold;
+    height: 4rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    flex-basis: 0;
+}
+.big-btn::before,
+.big-btn::after{
+    content: '';
+    display: block;
 }
 
-p {
-    font-size: 1rem;
+
+#shirts {
+    margin-top: -1rem;
+    margin-bottom: -1rem;
 }
 
 #shirts {
@@ -77,47 +241,74 @@ img {
     max-width: 100%;
 }
 
-.heart-wrapper {
-    width: 80px;
+footer {
+    display: flex;
+    justify-content: center;
 }
-.heart {
-    background-color: #111D4A;
-    display: block;
-    height: 10px;
-    margin: 0 2px;
-    position: relative;
-    top: 0;
-    transform: rotate(-45deg);
-    left: 45%; top: 45%;
-    width: 10px;
-  }
-  
-  .heart:before,
-  .heart:after {
-    content: "";
-    background-color: #111D4A;
-    border-radius: 50%;
-    height: 10px;
-    position: absolute;
-    width: 10px;
-  }
-  
-  .heart:before {
-    top: -5px;
-    left: 0;
-  }
-  
-  .heart:after {
-    left: 5px;
-    top: 0;
-  }
+.social-logos {
+    height: 2rem;
+    width: 2rem;
+}
+#fb-logo{
+    padding: .3rem;
+}
 
-@media only screen and (min-width: 450px) {}
+#twitter-logo{
+}
 
-@media only screen and (min-width: 700px) {}
+@media only screen and (min-width: 350px) {
+   #mission-statement > section {
+       width: 45%;
+       max-width: 30rem;
+   }
+   #logo {
 
-@media only screen and (min-width: 1000px) {}
+   }
+}
+@media only screen and (min-width: 425px) {
+    header > .container {
+        /* height: 12rem; */
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+    #logo {
 
-@media only screen and (min-width: 1200px) {}
+    }
 
-@media only screen and (min-width: 1500px) {}
+}
+@media only screen and (min-width: 600px) {
+    header {
+
+    }
+    #logo {
+        width: 60%;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+
+}
+
+@media only screen and (min-width: 1000px) {
+    #logo {
+        width: 40%;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    header{
+        height: 
+    }
+
+}
+
+@media only screen and (min-width: 1500px) {
+    header{
+        height: 
+    }
+
+}
