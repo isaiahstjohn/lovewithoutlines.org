@@ -29,8 +29,7 @@ header{
     background-size: cover;
     padding-left: 60px;
     padding-right: 60px;
-    margin-left: -10%;
-    width: 120%; /* oversized to allow scrollbar removal in the modal */
+    width: 100%; /* oversized to allow scrollbar removal in the modal */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,9 +126,9 @@ header{
 }
 .close-btn{
     cursor: pointer;
-    position: absolute;
-    top: 0px;
-    right: 0px;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
     display: block;
     width: 2rem;
     height: 2rem;
@@ -243,18 +242,30 @@ img {
 
 footer {
     display: flex;
-    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    margin-top: 5rem;
+}
+footer a{
+    font-size: .8rem;
+    font-weight: bold;
+    color: #676F8B;
+    margin: .5rem;
+}
+#social{
+    display: flex;
+    justify-content: space-between;
 }
 .social-logos {
     height: 2rem;
     width: 2rem;
+    margin: 0 1rem;
 }
 #fb-logo{
     padding: .3rem;
 }
 
-#twitter-logo{
-}
 
 @media only screen and (min-width: 350px) {
    #mission-statement > section {

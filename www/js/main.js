@@ -18,70 +18,132 @@
 
 // ------------ Mission Statement: coninue reading -----//
 //(function () {
-const $qs = (sel) => {
-    return document.querySelectorAll(sel);
+
+const domElement = {
+    hide: function () {
+        this.raw.style.display = "none";
+    },
+    show: function () {
+        this.raw.style.display = this.showDisplayProp;
+    },
+}
+
+const makeDomElement = (el) => {
+    let showDisplayProp = el.getAttribute("data-$display");
+    if (!showDisplayProp) {
+        showDisplayProp = el.getAttribute("display");
+    }
+    return Object.create(domElement, {
+        raw: {
+            value: el
+        },
+        showDisplayProp: {
+            value: showDisplayProp,
+            writable: true
+        }
+    });
 };
-const $id = (id) => {
-    return document.getElementById(id);
-};
-const forOneOrManyNodes = (target, action) => {
-    if (target instanceof NodeList) {
-        target.forEach((el) => action(el));
-    } else {
-        action(target);
+
+const domCollection = {
+    _initCollection: function (selector) {
+        let items = Array.from(document.querySelectorAll(selector));
+        items.forEach((el, index) => {
+            items[index] = makeDomElement(el);
+        });
+        return items;
+    },
+    and: function (selector) {
+        if (selector instanceof Node) {
+            this.items.push(makeDomElement(selector));
+        } else {
+            this.items = this.items.concat(this._initCollection(selector));
+        }
+        return this;
+    },
+    hide: function () {
+        this.items.forEach((item) => {
+            item.hide();
+        });
+        return this;
+    },
+    show: function () {
+        this.items.forEach((item) => {
+            item.show();
+        });
+        return this;
+    },
+    forEach: function (f) {
+        this.items.forEach((item) => {
+            f(item.raw);
+        });
+    },
+    slice: function (...args) {
+        let result = this.items.slice(...args);
+        result.forEach((el, index) => {
+            result[index] = el.raw;
+        });
+        return result;
+    },
+    pop: function (...args) {
+        return this.items.pop(...args).raw;
+    },
+    get length() {
+        return this.items.length;
     }
 };
-const hide = (target) => {
-    forOneOrManyNodes(target, (target) => {
-        target.style.display = "none";
+
+const $ = (selector) => {
+    let items;
+    if (selector instanceof Node) {
+        items = [makeDomElement(selector)];
+    } else {
+        items = domCollection._initCollection(selector);
+    }
+    return Object.create(domCollection, {
+        items: { value: items, writable: true }
     });
-};
-const show = (target) => {
-    forOneOrManyNodes(target, (target) => {
-        target.style.display = "block";
-    })
 }
+
 let pageScrollTarget = '';
 
-const normalMissionClassName = $id('en-mission-statement')
-    .className;
+$(".hide").hide();
 
-const openModal = (el) => {
-    show($qs('close-btn'));
-    show($qs('#' + el.id + '> .hide'));
-    el.className = 'opened';
-    $id('modal-bg').className = 'opened ' + normalMissionClassName;
-    scrollLock.disablePageScroll(el);
-}
-
-hide($qs(".hide"));
-$qs(".continue").forEach((link) => {
-    link.addEventListener('click', function () {
-        hide(this);
-        openModal(this.parentElement);
+$(".continue")
+    .and(".mission-header")
+    .forEach((link) => {
+        link.addEventListener('click', function (e) {
+            el = e.currentTarget.parentElement;
+            $('#' + el.id + '>.continue').hide();
+            $('#' + el.id + '>.close-btn')
+                .and('#' + el.id + '>.hide')
+                .and('#modal-bg')
+                .show();
+            el.className = 'opened';
+            $('#modal-bg').pop().className = 'opened hide';
+            scrollLock.disablePageScroll(el);
+            e.preventDefault();
+        });
     });
-});
 
-$qs(".mission-header").forEach((link) => {
-    link.addEventListener('click', function () {
-        hide($qs("#" + this.parentElement.id + " > .continue"));
-        openModal(this.parentElement);
-    });
-});
 
-$qs('.close-btn').forEach((el) => {
-    el.addEventListener('click', function () {
-        hide(this);
-        hide($qs('.hide'));
-        show($qs('.continue'));
-        $qs('.opened').forEach((el) => {
-            el.className = normalMissionClassName;
-        })
-        $id('modal-bg').className = '';
-        scrollLock.enablePageScroll(pageScrollTarget);
-    });
-});
-    /*
+$('.close-btn')
+    .and('#modal-bg')
+    .forEach((item) => {
+        item.addEventListener('click', function (e) {
+            $('.continue').show();
+            $('.close-btn')
+                .and('.hide')
+                .and('#modal-bg')
+                .hide();
+            $('.opened').forEach((el) => {
+                el.className = '';
+            })
+            scrollLock.enablePageScroll(pageScrollTarget);
+            e.preventDefault();
+        });
+    })
+
+/*
 contLinks.forEach((link) => {
 link.addEventListener('click', function () {
 this.style.display = "none";
